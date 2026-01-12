@@ -25,7 +25,7 @@ public class Movement : MonoBehaviour
     public float wallJumpingDuration;
     public Vector2 wallJumpingForce = new Vector2(8f, 16f);
 
-    public Rigidbody2D rb; //Permet d'insérer le rigidbody du pingouin
+    public Rigidbody2D rb; //Permet d'insï¿½rer le rigidbody du pingouin
     public Animator animator; // idem mais pour l'animation
     public SpriteRenderer spriteRenderer; //Visuel du perso de base
 
@@ -34,7 +34,7 @@ public class Movement : MonoBehaviour
 
     void Update()
     {
-        // Détection de l'entrée utilisateur pour le saut
+        // Dï¿½tection de l'entrï¿½e utilisateur pour le saut
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             isJumping = true;
@@ -55,27 +55,27 @@ public class Movement : MonoBehaviour
 
         if (!isWallJumping)
         {
-            Flip(rb.velocity.x); //permet que ça soit positif ou negatif
+            Flip(rb.linearVelocity.x); //permet que ï¿½a soit positif ou negatif
         }
     }
 
 
     void FixedUpdate()
-    {   // Vérifie si le personnage touche pour le sol et le mur
+    {   // Vï¿½rifie si le personnage touche pour le sol et le mur
         isGrounded = Physics2D.OverlapCircle(GroundCheck.position,0.2f, GroundLayer);
         isWalledRight = Physics2D.OverlapCircle(WallCheckRight.position, 0.2f, WallLayer);
         isWalledLeft = Physics2D.OverlapCircle(WallCheckLeft.position, 0.2f, WallLayer);
 
-        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; //Déplacement horizontal + la vitesse de déplacement
+        horizontalMovement = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime; //Dï¿½placement horizontal + la vitesse de dï¿½placement
 
-        float characterVelocity = Mathf.Abs(rb.velocity.x); //permet que la vitesse soit toujours positif
+        float characterVelocity = Mathf.Abs(rb.linearVelocity.x); //permet que la vitesse soit toujours positif
         animator.SetFloat("Speed", characterVelocity);
     }
 
     void MovePlayer()
     {
-        Vector3 targetVelocity = new Vector2(horizontalMovement, rb.velocity.y);
-        rb.velocity = Vector3.SmoothDamp(rb.velocity, targetVelocity, ref velocity, 0.05f);
+        Vector3 targetVelocity = new Vector2(horizontalMovement, rb.linearVelocity.y);
+        rb.linearVelocity = Vector3.SmoothDamp(rb.linearVelocity, targetVelocity, ref velocity, 0.05f);
 
         if (isJumping)
         {
@@ -89,7 +89,7 @@ public class Movement : MonoBehaviour
         if ((isWalledRight||isWalledLeft) && !isGrounded && horizontalMovement != 0f)
         {
             isWallSliding = true;
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSidingSpeed, float.MaxValue));
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, Mathf.Clamp(rb.linearVelocity.y, -wallSidingSpeed, float.MaxValue));
         }
         else
         {
@@ -115,10 +115,10 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && wallJumpingCounter > 0f)
         {
             isWallJumping = true;
-            rb.velocity = new Vector2(wallJumpingDirection * wallJumpingForce.x, wallJumpingForce.y);
+            rb.linearVelocity = new Vector2(wallJumpingDirection * wallJumpingForce.x, wallJumpingForce.y);
             wallJumpingCounter = 0f;
 
-            Flip(rb.velocity.x);
+            Flip(rb.linearVelocity.x);
             
             Invoke(nameof(StopWallJumping), wallJumpingDuration);
         }
