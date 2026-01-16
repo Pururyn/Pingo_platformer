@@ -3,10 +3,22 @@ using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void LoadNextLevel()
     {
-        if (SceneManager.)
-        SceneManager.LoadScene("Platformer - Normal");
+        // On récupère le nom de la scène actuelle
+        string currentSceneName = SceneManager.GetActiveScene().name;
+
+        if (currentSceneName == "Platformer - Facile")
+        {
+            SceneManager.LoadScene("Platformer - Normal");
+        }
+        else if (currentSceneName == "Platformer - Normal")
+        {
+            SceneManager.LoadScene("Platformer - Difficile");
+        }
+        else
+        {
+            //SceneManager.LoadScene("Menu")Debug.Log("Aucune correspondance de niveau trouvée ou fin du jeu !");
+        }
     }
 }

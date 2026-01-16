@@ -8,4 +8,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Platformer - Facile.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Platformer - Normal.unity
+    guid: 5d0a967baba65094f8f805ec809c5aaf
+  - enabled: 1
+    path: Assets/Scenes/Platformer - Difficile.unity
+    guid: 02b3124e0414e434fb3802e1dde59fb3
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
