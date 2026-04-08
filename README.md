@@ -33,3 +33,7 @@ Collect **5 fish coins** per level to unlock the exit door and progress to the n
 ## 👤 Author
 
 Project by **Pururyn**
+
+## 🎨 Credits
+ 
+Assets by **[Kenney](https://kenney.nl)** 
